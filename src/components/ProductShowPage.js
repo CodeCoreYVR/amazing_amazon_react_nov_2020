@@ -6,12 +6,28 @@ import { ReviewList } from './ReviewList'
 
 class ProductShowPage extends Component {
   constructor(props) {
-      super(props);
-      this.state = {
-          product: {
-              ...product
-          },
+    super(props);
+    this.state = {
+      product: {
+        ...product
+        },
       };
+
+    this.deleteReview = this.deleteReview.bind(this);
+  }
+
+  deleteReview(reviewId) {
+    const {
+        product,
+        product: { reviews },
+    } = this.state
+
+    this.setState({
+        product: {
+            ...product,
+            reviews: reviews.filter(r => r.id !== reviewId),
+        },
+    });
   }
 
   render() {
@@ -20,6 +36,7 @@ class ProductShowPage extends Component {
           <div className="ProductShowPage">
               <ProductDetails {...product} />
               <ReviewList
+              onReviewDeleteClick={this.deleteReview}
               reviews={product.reviews} />  
           </div>
       );

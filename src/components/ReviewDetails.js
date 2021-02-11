@@ -11,6 +11,7 @@ export function ReviewDetails(props) {
       <p>body: {body}</p>
       <p>Reviewed by: {reviewerName}</p>
       <p>createdAt: {createdAt}</p>{' '}
+      <button onClick={() => props.onDeleteClick(props.id)}>Delete</button>
     </div>
   )
 }

@@ -14,6 +14,8 @@ export function ReviewList(props) {
             body={body}
             reviewerName={reviewer.full_name}
             createdAt={created_at}
+            onDeleteClick={id => props.onReviewDeleteClick(id)}
+            {...review}
           />
         )
       })}

@@ -1,17 +1,31 @@
 import React, { Component } from 'react';
-import productList from '../data/productList';
-import ProductForm from './ProductForm';
+// import productList from '../../data/productList';
+import ProductDetails  from '../ProductDetails';
+import NewProductForm from '../NewProductForm';
+import { Link } from 'react-router-dom';
+import { Product } from '../../requests'
 
 class ProductIndexPage extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            products: [...productList]
+            products: []
         };
 
         this.deleteProduct = this.deleteProduct.bind(this);
         this.createProduct = this.createProduct.bind(this);
     }
+
+    componentDidMount() {
+        Product.index()
+          .then((products) => {
+            this.setState((state) => {
+              return {
+                products: products
+              }
+            })
+          })
+      }
 
     deleteProduct(productId) {
         this.setState({
@@ -35,19 +49,17 @@ class ProductIndexPage extends Component {
     render() {
         return (
             <div className="ProductIndexPage">
-               <ProductForm createProduct={this.createProduct}/>
                <h1>Products</h1> 
                <ul>
                    {this.state.products.map(product => (
-                       <li key={product.id}>
-                           <small>
-                               <em>{product.id}</em>
-                           </small>{' '}
-                            <a href="#">{product.title}</a>
-                            <button style={{ borderColor: 'red', margin: '5px 6px' }} onClick={() => this.deleteProduct(product.id)}>
-                                Delete
-                            </button>
-                       </li>
+                    <div key={product.id}>
+                        <Link key={product.id} to={`/products/${product.id}`}>
+                        <ProductDetails {...product} deleteProduct={this.deleteProduct}/>
+                        </Link>  
+                        <button style={{ borderColor: 'red', margin: '5px 6px' }} onClick={() => this.deleteProduct(product.id)}>
+                            Delete
+                        </button>
+                    </div> 
                    ))}
                </ul>
             </div>

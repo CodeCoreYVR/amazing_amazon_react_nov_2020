@@ -51,8 +51,10 @@ class App extends Component {
               )
             })
         }
+
     render() {
         return(
+          <div className="App">
         <BrowserRouter>
             <NavBar currentUser={this.state.user} destroySession={this.destroySession}/>
             <Switch>
@@ -65,8 +67,10 @@ class App extends Component {
             <Route path='/products' exact component={ ProductIndexPage }/>
             <Route path='/sign_in' render={(routeProps)=><SignInPage handleSubmit={this.handleSubmit} {...routeProps}/>} />
             
+            
             </Switch>
         </BrowserRouter>
+        </div>
         )
     }
 }

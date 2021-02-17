@@ -1,4 +1,6 @@
 import React from 'react';
+import BlueInput from '../BlueInput';
+import ColoredLabel from '../ColoredLabel';
 
 const NewProductForm = ({ createProduct, newProductData, updateProductData }) => {
 
@@ -25,7 +27,7 @@ const NewProductForm = ({ createProduct, newProductData, updateProductData }) =>
   return(
     <form onSubmit={handleSubmit}>
       <div>
-        <label htmlFor='title'>Title</label>
+        <ColoredLabel htmlFor='title' primary>Title</ColoredLabel>
         <br />
         <input 
           name='title' 
@@ -35,7 +37,7 @@ const NewProductForm = ({ createProduct, newProductData, updateProductData }) =>
         />
       </div>
       <div>
-        <label htmlFor='description'>Description</label>
+        <ColoredLabel htmlFor='description'>Description</ColoredLabel>
         <br />
         <textarea 
           name='description' 
@@ -45,7 +47,7 @@ const NewProductForm = ({ createProduct, newProductData, updateProductData }) =>
         />
       </div>
       <div>
-        <label htmlFor='price'>Price</label>
+      <ColoredLabel htmlFor='price'>Price</ColoredLabel>
         <br />
         <textarea 
           name='price' 
@@ -55,7 +57,7 @@ const NewProductForm = ({ createProduct, newProductData, updateProductData }) =>
         />
       </div>
       <div>
-        <input type='submit' value='Submit' />
+      <BlueInput type='submit' value='Submit' />
       </div>
     </form>
   )
